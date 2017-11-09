@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<div class="w3-row-padding w3-container w3-padding-64">
+    <div class="w3-center w3-padding-16"><h1>Search Results:</h1>
+</div>
+
+<div class="w3-row-padding w3-container">
+<p class="w3-centered w3-center w3-padding-32 w3-card-4">Each instance of the word you searched for is listed in the table below. For each instance of the word found the gender marker is listed. If the gender marker is valid the noun will recieve an upvote for its correct gender. If the proceeding gender marker is not in the database the noun will not get an upvote from that instance. </p>
+</div>
+
+    <!-- Result Box -->
+    <div class="w3-third w3-center">
+      <div class="w3-card-4">
+
+      <header class="w3-container w3-blue">
+      <h2>Noun: {{ noun }}</h2>
+      </header>
+
+      <div class="w3-container">
+      <p>Gender: <b>{{ gender }}</b></p>
+      </div>
+
+      <div class="w3-container">
+      <p>Masculine Upvotes: <b>{{ male_vote }}</b></p>
+      </div>
+
+      <div class="w3-container">
+      <p>Feminine Upvotes: <b>{{ female_vote }}</b></p>
+      </div>
+
+      <footer class="w3-container w3-blue">
+      <h5>{{noun_status}}</h5>
+      </footer>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="w3-twothird w3-center">
+      <table class="w3-table  w3-striped w3-centered w3-card-4">
+      <tr class="w3-blue">
+        <th>Gender Marker</th>
+        <th>Marker Info</th>
+        <th>Feminine/Masculine Upvote Given</th>
+      </tr>
+      {% for mark in marker_dict %}
+      <tr>
+        <td>{{mark.marker}}</td>
+        <td>{{mark.gender}}</td>
+        {% if mark.gender == "feminine" %}
+        <td><i class="fa fa-arrow-circle-up w3-text-pink"> {{mark.gender}}</i></td>
+        {% endif %}
+        {% if mark.gender == "masculine" %}
+        <td><i class="fa fa-arrow-circle-up w3-text-blue"> {{mark.gender}}</i></td>
+        {% endif %}
+        {% if mark.gender == "marker not in database or not valid" %}
+        <td><i class="fa fa-close"> no vote given</i></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+      </table>
+    </div>
+{% endblock %}

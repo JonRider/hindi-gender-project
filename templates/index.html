@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<!-- Header -->
+<header class="w3-container w3-blue w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">The Hindi Gender Project</h1>
+  <p class="w3-xlarge">Boldly attempting to discover the gender of all Hindi nouns!</p>
+  <a href="{{ url_for('find') }}" class="w3-button w3-pink w3-large w3-margin-top w3-padding-large w3-hover-white">Find Gender</a>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Why the Hindi Gender Project?</h1>
+      <h5 class="w3-padding-32">As a Hindi learner I quickly discovered that one of the major challenges to overcome was determining the gender of nouns, because in Hindi it matters!</h5>
+      <p class="w3-text-grey">But as a learner sometimes it can be challenging to figure out which gender a noun is! Dictionaries don't even list the gender of nouns and many Hindi speakers may struggle to tell you the gender of a noun if you ask them outright. But the good news is there is an easy way to determine the gender of a noun in Hindi. It can be done by looking at a certain set of words that act as gender markers. These words are commonly inflecting adjectives that agree with the gender of the noun or posseive markers </p>
+    </div>
+    <div class="w3-third w3-center">
+        <i class="fa fa-intersex w3-padding-64 w3-text-pink w3-margin-left" style="font-size:260px"></i>
+    </div>
+  </div>
+</div>
+
+<!-- Second Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-third w3-center">
+      <i class="fa fa-tasks w3-padding-64 w3-text-blue w3-margin-right" style="font-size:260px"></i>
+    </div>
+
+    <div class="w3-twothird">
+      <h1>How it Works</h1>
+      <h5 class="w3-padding-32">The Hindi Gender Project works by first building a database of gender markers. Many of these gender markers are inflecting adjectives or possesive markers.</h5>
+
+      <p class="w3-text-grey">Then we leverage that database with crowdsourcing. People like you provide information about specific nouns. If you want to know the gender of a noun and come across a website that has that noun proceceded by gender marker all you need to do is submit the word you are searching for and a link to the website. Then the word will be added to our database for you and others to seach. We realize also that in some texts a Hindi noun may be treated as feminine while somewhere else it is treated as masculine. So we give our users the option to submit more references from website links to upvote or downvote the gender.</p>
+    </div>
+  </div>
+</div>
+
+<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+    <h1 class="w3-margin w3-xlarge">Help us start building the Hindi Gender Project today!</h1>
+</div>
+{% endblock %}
