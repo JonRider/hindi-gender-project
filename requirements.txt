@@ -1,4 +1,5 @@
 feedparser
 Flask
+gunicorn
 Flask-JSGlue
 beautifulsoup4
