@@ -4,3 +4,4 @@ gunicorn
 requests
 Flask-JSGlue
 beautifulsoup4
+cs50

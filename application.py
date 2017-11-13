@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, flash, redirect, render_template, request, session, url_for
-from cs50 import SQL
+from helpers import SQL
 import validators
 
 # hardcoded url for testing
