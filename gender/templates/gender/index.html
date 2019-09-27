@@ -1,0 +1,43 @@
+{% extends 'gender/base.html' %}
+
+{% block title %}
+Hindi Gender Project
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <!-- Content here -->
+  <h1> {{ message }} </h1>
+  <ul>
+    {% for word in nouns %}
+    <li>{{ word }}</li>
+    {% endfor %}
+  </ul>
+  <button type="button" class="btn btn-primary">Feminine</button>
+  <button type="button" class="btn btn-secondary">Masculine</button>
+
+
+
+</div>
+
+<div class="container gap">
+  <div class="card rounded-top-grad-border">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary fancy-button">Go somewhere</a>
+  </div>
+  </div>
+</div>
+
+<div class="container gap">
+  <div class="card rounded-left-grad-border">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary fancy-button">Go somewhere</a>
+  </div>
+  </div>
+</div>
+
+{% endblock %}

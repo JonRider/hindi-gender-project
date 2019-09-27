@@ -1,0 +1,24 @@
+
+.gap {
+  margin-top: 40px;
+}
+
+.rounded-top-grad-border, .rounded-left-grad-border {
+  border-top: solid 10px transparent;
+  border-left: solid 1px #fff;
+  border-right: solid 1px #fff;
+  border-bottom: solid 1px #fff;
+  border-radius: 10px;
+  background-image: linear-gradient(white, white), radial-gradient(circle at top left, #ec407a, #42a5f5);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  -webkit-box-shadow: 10px 10px 45px -31px rgba(0,0,0,1);
+  -moz-box-shadow: 10px 10px 45px -31px rgba(0,0,0,1);
+  box-shadow: 10px 10px 45px -31px rgba(0,0,0,1);
+}
+
+.rounded-left-grad-border {
+  border-top: solid 1px #fff;
+  border-left: solid 8px transparent;
+  background-image: linear-gradient(white, white), radial-gradient(ellipse at top left, #ec407a, #42a5f5);
+}
