@@ -3,12 +3,20 @@
   margin-top: 40px;
 }
 
+.hover-opacity:hover {
+  opacity: 0.6;
+}
+
+.icon {
+  font-size: 260px;
+}
+
 .rounded-top-grad-border, .rounded-left-grad-border {
-  border-top: solid 10px transparent;
+  border-top: solid 6px transparent;
   border-left: solid 1px #fff;
   border-right: solid 1px #fff;
   border-bottom: solid 1px #fff;
-  border-radius: 10px;
+  border-radius: 6px;
   background-image: linear-gradient(white, white), radial-gradient(circle at top left, #ec407a, #42a5f5);
   background-origin: border-box;
   background-clip: content-box, border-box;
@@ -19,6 +27,63 @@
 
 .rounded-left-grad-border {
   border-top: solid 1px #fff;
-  border-left: solid 8px transparent;
+  border-left: solid 6px transparent;
   background-image: linear-gradient(white, white), radial-gradient(ellipse at top left, #ec407a, #42a5f5);
+}
+
+footer {
+  height: auto;
+  padding-bottom: 5px;
+  padding-top: 10px;
+  position: relative;
+  width: 100%;
+  background: linear-gradient(to right, #ec407a 10%, white 40% 60%, #42a5f5 90%);
+}
+
+#login {
+  max-width: 600px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top:80px;
+}
+
+#email, #password, #username {
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  h5 {
+    font-size: 1.4rem;
+  }
+  .display-4 {
+    font-size: 2.2rem;
+  }
+  .lead {
+    font-size: 1.4rem;
+  }
+
+  .icon {
+    display: none;
+  }
+
+}
+
+/* If the screen size is 600px or less, set the font-size of <div> to 30px */
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+  h5 {
+    font-size: 1.2rem;
+  }
+  .display-4 {
+    font-size: 2rem;
+  }
+  .lead {
+    font-size: 1.2rem;
+  }
 }
