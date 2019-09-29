@@ -108,7 +108,7 @@ def contribute(request):
         "number": len(markers)
         }
 
-        return render(request, "gender/contribute.html", context)
+        return render(request, "gender/contribution.html", context)
 
         # Refactored to this point
         # markers_gender = []

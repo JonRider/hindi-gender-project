@@ -9,7 +9,7 @@ GENDER = [
 
 # Models
 class Noun(models.Model):
-    word = models.CharField(max_length=64)
+    word = models.CharField(max_length=64) # How to do no repeated words?
     female_up = models.PositiveIntegerField(default=0)
     male_up = models.PositiveIntegerField(default=0)
 

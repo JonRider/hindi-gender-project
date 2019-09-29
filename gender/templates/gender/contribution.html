@@ -1,0 +1,40 @@
+{% extends 'gender/base.html' %}
+
+{% block title %}
+Hindi Gender Project Contribution
+{% endblock %}
+
+{% block body %}
+<!-- Navbar -->
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">HGP</span>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'search' %}">Search</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login' %}">Login</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Contribution Results -->
+<div id="login" class="container gap">
+  <div id="login-card">
+    <div class="card rounded-left-grad-border">
+      <div class="card-body">
+        <h5 class="card-title">Contribution Results:</h5>
+        <p class="card-text">You submitted the word: {{ noun }} </p>
+        <p class="card-text">Number of times word found: {{ number }} </p>
+        <p class="card-text">Word was proceceded by these markers:
+          <ul>
+            {% for marker in markers %}
+            <li>{{ marker }}</li>
+            {% endfor %}
+          </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
