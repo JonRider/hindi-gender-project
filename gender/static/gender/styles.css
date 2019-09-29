@@ -41,10 +41,15 @@ footer {
 }
 
 #login {
+  padding: 5% 0;
   max-width: 600px;
   padding-left: 40px;
   padding-right: 40px;
-  padding-top:80px;
+
+}
+
+#login-card {
+  padding: 10% 0;
 }
 
 #email, #password, #username {
