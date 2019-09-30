@@ -16,15 +16,8 @@ from .models import Noun, Marker
 # Views
 def index(request):
     """Main index page. Displays information about the project."""
-    # Access our nouns model
-    nouns = Noun.objects.all()
-
-    context = {
-        "message": "Hello Everyone!!!!",
-        "nouns": nouns
-    }
-
-    return render(request, "gender/index.html", context)
+    # Home Page
+    return render(request, "gender/index.html", {"isLoggedIn": request.user.is_authenticated})
 
 
 def login(request):
