@@ -95,17 +95,29 @@ def contribute(request):
             for i,w in enumerate(list_of_words):
                 if w == noun:
                 # previous word
-                    if i>0:
+                    if i > 0:
                         # remove trailing punctuation
                         markers.append(list_of_words[i-1].strip('!,.?'))
 
+        # Word doesn't exist on page
         else:
             return render(request, "gender/contribute.html", {"message": "Could not find that word in the webpage"})
 
+        # How many times was marker repeated?
+        markers_totaled = {}
+        for marker in markers:
+            # List Comprehension
+            #indices = [i for i, x in enumerate(markers) if x == marker]
+            if marker in markers_totaled:
+                markers_totaled[marker] += 1
+            else:
+                markers_totaled[marker] = 1
+
         context = {
-        "markers": markers,
-        "noun": noun,
-        "number": len(markers)
+            "markers": markers_totaled,
+            "noun": noun,
+            "url": url,
+            "number": len(markers)
         }
 
         return render(request, "gender/contribution.html", context)

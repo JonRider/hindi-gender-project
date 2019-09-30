@@ -24,12 +24,13 @@ Hindi Gender Project Contribution
     <div class="card rounded-left-grad-border">
       <div class="card-body">
         <h5 class="card-title">Contribution Results:</h5>
-        <p class="card-text">You submitted the word: {{ noun }} </p>
-        <p class="card-text">Number of times word found: {{ number }} </p>
+        <p class="card-text">You submitted the word: <a class="font-weight-bold">{{ noun }}</a></p>
+        <p class="card-text">From the url: <a href="url">{{ url }}<a></p>
+        <p class="card-text">Number of times word found: <a class="font-weight-bold">{{ number }}</a></p>
         <p class="card-text">Word was proceceded by these markers:
           <ul>
-            {% for marker in markers %}
-            <li>{{ marker }}</li>
+            {% for key, value in markers.items %}
+            <li>{{ key }} - {{value}} time{% if value != 1 %}s{% endif %}</li>
             {% endfor %}
           </ul>
         </p>
