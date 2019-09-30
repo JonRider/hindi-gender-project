@@ -7,13 +7,20 @@ Hindi Gender Project Search
 {% block body %}
 <!-- Navbar -->
 <nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-0 h1">HGP</span>
+  <a href="{% url 'index' %}" class="navbar-brand mb-0 h1">HGP</a>
   <ul class="nav">
     <li class="nav-item">
       <a class="nav-link active" href="{% url 'search' %}">Search</a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="{% url 'contribute' %}">Contribute</a>
+    </li>
+    <li class="nav-item">
+      {% if isLoggedIn %}
+      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      {% else %}
       <a class="nav-link" href="{% url 'login' %}">Login</a>
+      {% endif %}
     </li>
   </ul>
 </nav>

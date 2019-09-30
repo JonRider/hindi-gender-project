@@ -7,10 +7,13 @@ Hindi Gender Project
 {% block body %}
 <!-- Navbar -->
 <nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-0 h1">HGP</span>
+  <a href="{% url 'index' %}" class="navbar-brand mb-0 h1">HGP</a>
   <ul class="nav">
     <li class="nav-item">
       <a class="nav-link" href="{% url 'search' %}">Search</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'contribute' %}">Contribute</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'login' %}">Login</a>
@@ -62,31 +65,11 @@ Hindi Gender Project
   </div>
 </div>
 
-<div class="container gap">
-  <div class="card rounded-top-grad-border">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary fancy-button">Go somewhere</a>
-  </div>
-  </div>
-</div>
-
-<div class="container gap">
-  <div class="card rounded-left-grad-border">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-secondary">Go somewhere</a>
-  </div>
-  </div>
-</div>
-
 <footer class="text-center gap">
   <div class="container">
-    <i class="fa fa-github hover-opacity"></i>
-    <i class="fa fa-twitter hover-opacity"></i>
-    <i class="fa fa-linkedin hover-opacity"></i>
+    <i class="fa fa-lg fa-github hover-opacity"></i>
+    <i class="fa fa-lg fa-twitter hover-opacity"></i>
+    <i class="fa fa-lg fa-linkedin hover-opacity"></i>
  </div>
  <a>An undertaking of <a href="http://www.HindiUnlocked.com" target="_blank">HindiUnlocked.com</a></a>
  <p>Created by <b>Jonathan Rider</b></p>

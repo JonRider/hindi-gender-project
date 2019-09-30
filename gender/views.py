@@ -12,9 +12,10 @@ import validators
 # Import DB models
 from .models import Noun, Marker
 
+
 # Views
 def index(request):
-
+    """Main index page. Displays information about the project."""
     # Access our nouns model
     nouns = Noun.objects.all()
 
@@ -25,28 +26,51 @@ def index(request):
 
     return render(request, "gender/index.html", context)
 
+
 def login(request):
+    """This is our login page. Login is required to make contributions
+    but not to view nouns."""
+
+    # Send them to contribute if they are already logged in
+    if request.user.is_authenticated:
+        return render(request, "gender/contribute.html")
+
+    # Check method
     if request.method == "GET":
         return render(request, "gender/login.html", {"message": ""})
+    # POST
     else:
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
         if user is not None:
             dj_login(request, user)
-            # Eventually this will redirect to a new page
-            return render(request, "gender/login.html", {"message": "Logged in Successfully"})
+            # Send them to the contribute page
+            return render(request, "gender/contribute.html", {"message": ""})
         else:
-            return render(request, "gender/login.html", {"message": "Invalid credentials."})
+            return render(request, "gender/login.html", {"message": "Invalid credentials"})
+
+
+def logout_view(request):
+    """Logout user."""
+    logout(request)
+    return render(request, "gender/login.html", {"message": "Logged out"})
+
 
 def search(request):
-
     if request.method == "GET":
-        return render(request, "gender/search.html")
+        return render(request, "gender/search.html", {"isLoggedIn": request.user.is_authenticated})
+
 
 def contribute(request):
+     # Redirect if user is not logged in
+    if not request.user.is_authenticated:
+        return render(request, "gender/login.html", {"message": "Login Required to Contribute!"})
+
+    # Check Method
     if request.method == "GET":
-        return render(request, "gender/contribute.html", {"message": ""})
+        return render(request, "gender/contribute.html")
+
     if request.method == "POST":
 
         # get noun
@@ -113,6 +137,7 @@ def contribute(request):
             else:
                 markers_totaled[marker] = 1
 
+        # Return our context to the contribution (result) page
         context = {
             "markers": markers_totaled,
             "noun": noun,
