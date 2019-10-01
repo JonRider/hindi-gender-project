@@ -26,16 +26,16 @@ Hindi Gender Project Search
 </nav>
 
 <!-- Search Box -->
-<div id="login" class="container gap">
-  <div id="login-card">
+<div class="box container gap">
+  <div class="inner-card">
     <div class="card rounded-top-grad-border">
       <div class="card-body">
         <h2 class="card-title text-center">Search</h2>
-        <p class="card-text text-center">search for a nouns gender below</p>
+        <p class="card-text text-center">Search for a nouns gender below (unicode Hindi)</p>
         <form action="{% url 'login' %}" method="post">
           {% csrf_token %}
           <div class="form-group">
-            <input name="word" type="text" class="form-control" id="word" placeholder="Word">
+            <input name="word" type="text" class="form-control" id="word" placeholder="Noun">
           </div>
           <p class="card-text text-center text-muted">{{ message }}</p>
           <div class="text-center">

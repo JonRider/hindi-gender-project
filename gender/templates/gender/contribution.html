@@ -22,8 +22,8 @@ Hindi Gender Project Contribution
 </nav>
 
 <!-- Contribution Results -->
-<div id="login" class="container gap">
-  <div id="login-card">
+<div class="results container">
+  <div class="inner-card">
     <div class="card rounded-left-grad-border">
       <div class="card-body">
         <h5 class="card-title">Contribution Results:</h5>
@@ -37,6 +37,7 @@ Hindi Gender Project Contribution
             {% endfor %}
           </ul>
         </p>
+        <p class="card-text text-center text-muted"><a href="{% url 'contribute' %}">Submit another</a></p>
       </div>
     </div>
   </div>

@@ -40,15 +40,21 @@ footer {
   background: linear-gradient(to right, #ec407a 10%, white 40% 60%, #42a5f5 90%);
 }
 
-#login {
+.results, .box {
   padding: 5% 0;
-  max-width: 600px;
   padding-left: 40px;
   padding-right: 40px;
-
 }
 
-#login-card {
+.results {
+  max-width: 800px;
+}
+
+.box {
+  max-width: 600px;
+}
+
+.inner-card {
   padding: 10% 0;
 }
 

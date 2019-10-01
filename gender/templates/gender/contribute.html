@@ -22,12 +22,12 @@ Hindi Gender Project Contribute
 </nav>
 
 <!-- Contribute Box -->
-<div id="login" class="container gap">
-  <div id="login-card">
+<div class="box container gap">
+  <div class="inner-card">
     <div class="card rounded-top-grad-border">
       <div class="card-body">
         <h2 class="card-title text-center">Contribute</h2>
-        <p class="card-text text-center">Enter the noun to add and copy and paste the url where you found it</p>
+        <p class="card-text text-center">Enter the noun to add and enter the url where you found it</p>
         <form action="{% url 'contribute' %}" method="post">
           {% csrf_token %}
           <div class="form-group">
