@@ -3,6 +3,10 @@
   margin-top: 40px;
 }
 
+.space {
+  margin-top: 10px;
+}
+
 .hover-opacity:hover {
   opacity: 0.6;
 }
@@ -58,7 +62,7 @@ footer {
   padding: 10% 0;
 }
 
-#email, #password, #username {
+#email, #password, #password-check, #username {
     max-width: 450px;
     margin: 0 auto;
 }
@@ -80,7 +84,6 @@ footer {
   .icon {
     display: none;
   }
-
 }
 
 /* If the screen size is 600px or less, set the font-size of <div> to 30px */

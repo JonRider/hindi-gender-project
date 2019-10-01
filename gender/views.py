@@ -21,7 +21,7 @@ def index(request):
     return render(request, "gender/index.html", {"isLoggedIn": request.user.is_authenticated})
 
 
-def login(request):
+def login_view(request):
     """This is our login page. Login is required to make contributions
     but not to view nouns."""
 
@@ -50,6 +50,35 @@ def logout_view(request):
     logout(request)
     return render(request, "gender/login.html", {"message": "Logged out"})
 
+def register(request):
+    # Redirect if user is already logged in
+    if request.user.is_authenticated:
+       return render(request, "gender/contribute.html", {"message": "You are already registered!"})
+
+    # If they got here from a get request
+    if request.method == "GET":
+        return render(request, "gender/register.html")
+    # Via Post
+    else:
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+        passwordCheck = request.POST["password-check"]
+
+        # Verify password match
+        if password != passwordCheck:
+            return render(request, "gender/register.html", {"message": "Password doesn't match!"})
+
+        # Look for prexisting user
+        user = User.objects.get(username=username)
+
+        # Or register and signin
+        if user is None:
+            user = User.objects.create_user(username, email, password)
+            dj_login(request, user)
+            return render(request, "gender/contribute.html", {"message": "Sucsessfully registered!"})
+        else:
+            return render(request, "gender/register.html", {"message": "User already exists."})
 
 def search(request):
     if request.method == "GET":
