@@ -117,7 +117,7 @@ def contribute(request):
         user_requests.number += 1
         user_requests.save()
         # Check max requests
-        if user_requests.number > 5:
+        if user_requests.number > 10:
             return render(request, "gender/contribute.html", {"message": "You have sumbitted the maximum number of contributions for today"})
 
         # if they didn't give us a noun send them back
@@ -168,38 +168,74 @@ def contribute(request):
             return render(request, "gender/contribute.html", {"message": "Could not find that word in the webpage"})
 
         # How many times was marker repeated?
-        markers_totaled = {}
+        # markers_totaled = {}
+        # for marker in markers:
+        #     if marker in markers_totaled:
+        #         markers_totaled[marker] += 1
+        #     else:
+        #         markers_totaled[marker] = 1
+
+        # Setup Gender Count
+        # markers_gender = []
+        male_up = 0
+        female_up = 0
+
+        # Make an array that has a gender value for each object key
+        # for marker in markers_totaled:
+        #     try:
+        #         mark = Marker.objects.get(word=marker)
+        #         if mark.gender == "Masculine":
+        #             markers_gender.append("Masculine")
+        #         else:
+        #             markers_gender.append("Feminine")
+        #     except Marker.DoesNotExist:
+        #         markers_gender.append("Not a registered marker")
+
+
+        # check if marker is in gender markers and tally
         for marker in markers:
-            # List Comprehension
-            #indices = [i for i, x in enumerate(markers) if x == marker]
-            if marker in markers_totaled:
-                markers_totaled[marker] += 1
-            else:
-                markers_totaled[marker] = 1
+            try:
+                mark = Marker.objects.get(word=marker)
+                if f"{mark.gender}" == "M":
+                    male_up += 1
+                else:
+                    female_up += 1
+            except Marker.DoesNotExist:
+                pass
+                # Still need to add to DB
+
+        # create the list of markers with gender
+        markers_gender = []
+        for marker in markers:
+            try:
+                mark = Marker.objects.get(word=marker)
+                markers_gender.append(mark)
+            except Marker.DoesNotExist:
+                markers_gender.append({"marker": marker, "gender": "unc"})
 
         # Return our context to the contribution (result) page
         context = {
-            "markers": markers_totaled,
+            "markers": markers,
             "noun": noun,
             "url": url,
-            "number": len(markers)
+            "number": len(markers),
+            "male_up": male_up,
+            "female_up": female_up,
+            "markers_gender": markers_gender,
         }
 
         return render(request, "gender/contribution.html", context)
 
-        # Refactored to this point
-        # markers_gender = []
-        # male_up = 0
-        # female_up = 0
-        # # check if marker is in gender markers
+
+
         # for i in range(len(markers)):
         #     rows_markers = db.execute("SELECT * FROM markers WHERE masculine = :marker OR feminine = :marker OR masculine_plural = :marker", marker=markers[i])
-        #
-        #     # check to make sure marker exists
-        #     markerrow = 0
-        #     for row in rows_markers:
-        #         markerrow += 1
-        #
+
+            # check to make sure marker exists
+            # markerrow = 0
+            # for row in rows_markers:
+            #     markerrow += 1
+
         #     # append markers gender
         #     if markerrow > 0:
         #         if rows_markers[0]["masculine"] == markers[i] or rows_markers[0]["masculine_plural"] == markers[i]:

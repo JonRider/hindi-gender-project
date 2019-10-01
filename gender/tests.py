@@ -34,8 +34,6 @@
 markers = ["ki", "ki", "ki", "ko"]
 markers_totaled = {}
 for marker in markers:
-    # List Comprehension
-    #indices = [i for i, x in enumerate(markers) if x == marker]
     if marker in markers_totaled:
         markers_totaled[marker] += 1
     else:

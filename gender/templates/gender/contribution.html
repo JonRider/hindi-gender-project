@@ -31,12 +31,21 @@ Hindi Gender Project Contribution
         <p class="card-text">From the url: <a href="url">{{ url }}<a></p>
         <p class="card-text">Number of times word found: <a class="font-weight-bold">{{ number }}</a></p>
         <p class="card-text">Word was proceceded by these markers:
+
           <ul>
-            {% for key, value in markers.items %}
-            <li>{{ key }} - {{value}} time{% if value != 1 %}s{% endif %}</li>
+            {% for marker in markers_gender %}
+            {% if marker.gender|stringformat:"s" == "M" %}
+            <li>{{ marker }} (Masculine) <i class="text-secondary fa fa-check-circle"></i></li>
+            {% elif marker.gender|stringformat:"s" == "F" %}
+            <li>{{ marker }} (Feminine) <i class="text-primary fa fa-check-circle"></i></li>
+            {% else %}
+            <li>{{ marker.marker }} (Not marker / not in database) <i title="Click to suggest as a marker" class="text-success fa fa-plus-circle"></i></li>
+            {% endif %}
             {% endfor %}
           </ul>
         </p>
+        <p class="card-text">Masculine upvotes: <a class="font-weight-bold">{{ male_up }}</a></p>
+        <p class="card-text">Feminine upvotes: <a class="font-weight-bold">{{ female_up }}</a></p>
         <p class="card-text text-center text-muted"><a href="{% url 'contribute' %}">Submit another</a></p>
       </div>
     </div>
