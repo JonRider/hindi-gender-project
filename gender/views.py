@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login as dj_login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import User
+from datetime import date
 # We use python requests and BeautifulSoup
 import requests
 from bs4 import BeautifulSoup
@@ -10,7 +11,7 @@ from bs4 import BeautifulSoup
 import validators
 
 # Import DB models
-from .models import Noun, Marker
+from .models import Noun, Marker, Request
 
 
 # Views
@@ -72,6 +73,23 @@ def contribute(request):
 
         # get website
         url = request.POST["url"]
+
+        # check number of requests per day
+        try:
+            user_requests = Request.objects.get(user=request.user)
+        except Request.DoesNotExist:
+            user_requests = Request.objects.create(user=request.user)
+        # If requests arent from today reset the number
+        if user_requests.date != date.today():
+            user_requests.date = date.today()
+            user_requests.number = 0
+            user_requests.save()
+        # Add this request
+        user_requests.number += 1
+        user_requests.save()
+        # Check max requests
+        if user_requests.number > 5:
+            return render(request, "gender/contribute.html", {"message": "You have sumbitted the maximum number of contributions for today"})
 
         # if they didn't give us a noun send them back
         if noun == "":
