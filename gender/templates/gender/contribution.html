@@ -26,7 +26,7 @@ Hindi Gender Project Contribution
   <div class="inner-card">
     <div class="card rounded-left-grad-border">
       <div class="card-body">
-        <h5 class="card-title">Contribution Results:</h5>
+        <h5 class="card-title">Contribution Results</h5>
         <p class="card-text">You submitted the word: <a class="font-weight-bold">{{ noun }}</a></p>
         {% if inDataBase %}
         <p class="card-text">Word was already in database... updating.</p>
@@ -35,15 +35,15 @@ Hindi Gender Project Contribution
         {% endif %}
         <p class="card-text">From the url: <a href="url">{{ url }}<a></p>
         <p class="card-text">Number of times word found: <a class="font-weight-bold">{{ number }}</a></p>
-        <p class="card-text">Word was proceceded by these markers:
+        <p class="card-text">Word was preceded by these markers:
           <ul class="fa-ul">
             {% for marker in markers_gender %}
             {% if marker.gender|stringformat:"s" == "M" %}
-            <li><i class="fa-li text-secondary fa fa-arrow-circle-up"></i> {{ marker }} (Masculine) </li>
+            <li><i class="fa-li text-secondary fa fa-arrow-circle-up" title="Upvote for Masculine" data-toggle="tooltip"></i> {{ marker }} (Masculine) </li>
             {% elif marker.gender|stringformat:"s" == "F" %}
-            <li><i class="fa-li text-primary fa fa-arrow-circle-up"></i> {{ marker }} (Feminine) </li>
+            <li><i class="fa-li text-primary fa fa-arrow-circle-up" title="Upvote for Feminine" data-toggle="tooltip"></i> {{ marker }} (Feminine) </li>
             {% else %}
-            <li><i class="fa fa-minus-circle"></i> {{ marker.marker }} (Not marker / not in database) <i title="Click to suggest as a marker" data-toggle="tooltip" class="text-success fa fa-plus-circle"></i></li>
+            <li><form action="{% url 'suggest' %}" method="post">{% csrf_token %}<button class="circle" type="submit" name="marker" value="{{ marker.marker }}"/><i title="Click to suggest as a marker" data-toggle="tooltip" class="fa-li text-success fa fa-plus-circle"></i></button>{{ marker.marker }} (Not a marker)</li>
             {% endif %}
             {% endfor %}
           </ul>
@@ -52,6 +52,13 @@ Hindi Gender Project Contribution
         <p class="card-text">Feminine upvotes: <a class="font-weight-bold">{{ female_up }}</a></p>
         <p class="card-text">Total Masculine votes now: <a class="font-weight-bold">{{ total_male }}</a></p>
         <p class="card-text">Total Feminine votes now: <a class="font-weight-bold">{{ total_female }}</a></p>
+        <h5 class="card-text">Most likely noun is:
+          {% if gender|stringformat:"s" == "Feminine" %}
+          <span class="font-weight-bold text-primary">{{ gender }}</span>
+          {% else %}
+          <span class="font-weight-bold text-secondary">{{ gender }}</span>
+          {% endif %}
+        </h5>
         <p class="card-text text-center text-muted"><a href="{% url 'contribute' %}">Submit another</a></p>
       </div>
     </div>

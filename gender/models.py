@@ -31,3 +31,15 @@ class Request(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date = models.DateField(default=datetime.date.today)
     number = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.user}'s current # of requests: {self.number}"
+
+# Suggested Marker to add
+class Suggestion(models.Model):
+    word = models.CharField(max_length=64)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    count = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.user} suggested {self.word}"

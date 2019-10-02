@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 import validators
 
 # Import DB models
-from .models import Noun, Marker, Request
+from .models import Noun, Marker, Request, Suggestion
 
 
 # Views
@@ -201,6 +201,12 @@ def contribute(request):
         word.male_up += male_up
         word.save()
 
+        # Tally
+        if word.female_up > word.male_up:
+            gender = "Feminine"
+        else:
+            gender = "Masculine"
+
         # Return our context to the contribution (result) page
         context = {
             "markers": markers,
@@ -213,6 +219,36 @@ def contribute(request):
             "inDataBase": inDataBase,
             "total_female": word.female_up,
             "total_male": word.male_up,
+            "gender": gender,
         }
 
         return render(request, "gender/contribution.html", context)
+
+def suggest(request):
+
+   # Don't let them GET this
+   if not request.user.is_authenticated:
+       return render(request, "gender/login.html", {"message": "Login required to contribute!"})
+   # Don't let them GET this
+   if request.method == "GET":
+      return render(request, "gender/contribute.html")
+
+   if request.method == "POST":
+       # Get marker to suggest
+       marker = request.POST["marker"]
+
+       # Add to suggestion DB
+       try:
+           suggestion = Suggestion.objects.get(word=marker)
+           # Increment the number of times this has been suggested
+           suggestion.count += 1
+           suggestion.save()
+       except Suggestion.DoesNotExist:
+           suggestion = Suggestion.objects.create(word=marker, user=request.user)
+
+       # Context to return to display
+       context = {
+        "marker": marker,
+       }
+
+       return render(request, "gender/suggest.html", context)
