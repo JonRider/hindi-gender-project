@@ -13,6 +13,16 @@ import validators
 # Import DB models
 from .models import Noun, Marker, Request, Suggestion
 
+# Functions
+def isHindi(word):
+    # Test for Hindi Unicode Range
+    # https://stackoverflow.com/questions/19704317/how-to-detect-unicode-character-range-in-python
+    # by Martijn Pieters
+    maxchar = max(word)
+    if u'\u0900' <= maxchar <= u'\u097f':
+        return True
+    else:
+        return False
 
 # Views
 def index(request):
@@ -92,6 +102,9 @@ def results(request):
         return render(request, "gender/search.html", {"isLoggedIn": request.user.is_authenticated})
     else:
         word = request.POST["word"]
+
+        if isHindi(word) == False:
+            return render(request, "gender/search.html", {"isLoggedIn": request.user.is_authenticated, "message": "Word must be in Hindi unicode format"})
 
         context = {
             "word": word,
