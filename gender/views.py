@@ -186,7 +186,20 @@ def contribute(request):
             except Marker.DoesNotExist:
                 # We dont have a marker for this in the DB yet
                 markers_gender.append({"marker": marker, "gender": "unc"})
-                # Still need to add to DB
+
+        inDataBase = True
+        # See if word is in DB or add it
+        try:
+            word = Noun.objects.get(word=noun)
+            inDataBase = True
+        except Noun.DoesNotExist:
+            word = Noun.objects.create(word=noun)
+            inDataBase = False
+
+        # Update votes
+        word.female_up += female_up
+        word.male_up += male_up
+        word.save()
 
         # Return our context to the contribution (result) page
         context = {
@@ -197,6 +210,9 @@ def contribute(request):
             "male_up": male_up,
             "female_up": female_up,
             "markers_gender": markers_gender,
+            "inDataBase": inDataBase,
+            "total_female": word.female_up,
+            "total_male": word.male_up,
         }
 
         return render(request, "gender/contribution.html", context)

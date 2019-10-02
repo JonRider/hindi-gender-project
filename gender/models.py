@@ -11,7 +11,7 @@ GENDER = [
 
 # Models
 class Noun(models.Model):
-    word = models.CharField(max_length=64) # How to do no repeated words?
+    word = models.CharField(max_length=64, unique=True)
     female_up = models.PositiveIntegerField(default=0)
     male_up = models.PositiveIntegerField(default=0)
 
@@ -20,7 +20,7 @@ class Noun(models.Model):
 
 
 class Marker(models.Model):
-    word = models.CharField(max_length=64)
+    word = models.CharField(max_length=64, unique=True)
     gender = models.CharField(max_length=2, choices=GENDER)
 
     def __str__(self):
