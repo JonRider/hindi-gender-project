@@ -167,51 +167,26 @@ def contribute(request):
         else:
             return render(request, "gender/contribute.html", {"message": "Could not find that word in the webpage"})
 
-        # How many times was marker repeated?
-        # markers_totaled = {}
-        # for marker in markers:
-        #     if marker in markers_totaled:
-        #         markers_totaled[marker] += 1
-        #     else:
-        #         markers_totaled[marker] = 1
-
         # Setup Gender Count
-        # markers_gender = []
         male_up = 0
         female_up = 0
 
-        # Make an array that has a gender value for each object key
-        # for marker in markers_totaled:
-        #     try:
-        #         mark = Marker.objects.get(word=marker)
-        #         if mark.gender == "Masculine":
-        #             markers_gender.append("Masculine")
-        #         else:
-        #             markers_gender.append("Feminine")
-        #     except Marker.DoesNotExist:
-        #         markers_gender.append("Not a registered marker")
-
-
         # check if marker is in gender markers and tally
+        markers_gender = []
         for marker in markers:
             try:
+                # See if marker is in the DB
                 mark = Marker.objects.get(word=marker)
+                # Add marker to the gender list to display
+                markers_gender.append(mark)
                 if f"{mark.gender}" == "M":
                     male_up += 1
                 else:
                     female_up += 1
             except Marker.DoesNotExist:
-                pass
-                # Still need to add to DB
-
-        # create the list of markers with gender
-        markers_gender = []
-        for marker in markers:
-            try:
-                mark = Marker.objects.get(word=marker)
-                markers_gender.append(mark)
-            except Marker.DoesNotExist:
+                # We dont have a marker for this in the DB yet
                 markers_gender.append({"marker": marker, "gender": "unc"})
+                # Still need to add to DB
 
         # Return our context to the contribution (result) page
         context = {
