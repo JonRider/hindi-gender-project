@@ -1,7 +1,7 @@
 {% extends 'gender/base.html' %}
 
 {% block title %}
-Hindi Gender Project Search
+Hindi Gender Project Results
 {% endblock %}
 
 {% block body %}
@@ -25,23 +25,14 @@ Hindi Gender Project Search
   </ul>
 </nav>
 
-<!-- Search Box -->
-<div class="box container gap">
+<!-- Search Results -->
+<div class="results container">
   <div class="inner-card">
-    <div class="card rounded-top-grad-border">
+    <div class="card rounded-left-grad-border">
       <div class="card-body">
-        <h2 class="card-title text-center">Search</h2>
-        <p class="card-text text-center">Search for a nouns gender below (unicode Hindi)</p>
-        <form action="{% url 'results' %}" method="post">
-          {% csrf_token %}
-          <div class="form-group">
-            <input name="word" type="text" class="form-control" id="word" placeholder="Noun">
-          </div>
-          <p class="card-text text-center text-muted">{{ message }}</p>
-          <div class="text-center">
-            <button type="submit" class="btn btn-secondary text-center">Search</button>
-          </div>
-        </form>
+        <h5 class="card-title">Search Results</h5>
+        <p class="card-text">You submitted the word: <a class="font-weight-bold">{{ word }}</a></p>
+        <p class="card-text text-center text-muted"><a href="{% url 'search' %}">Search for another</a></p>
       </div>
     </div>
   </div>

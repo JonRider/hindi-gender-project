@@ -10,4 +10,5 @@ urlpatterns = [
     path("search", views.search, name="search"),
     path("contribute", views.contribute, name="contribute"),
     path("suggest", views.suggest, name="suggest"),
+    path("results", views.results, name="results"),
 ]

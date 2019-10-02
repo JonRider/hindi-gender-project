@@ -50,6 +50,7 @@ def logout_view(request):
     logout(request)
     return render(request, "gender/login.html", {"message": "Logged out"})
 
+
 def register(request):
     # Redirect if user is already logged in
     if request.user.is_authenticated:
@@ -80,9 +81,24 @@ def register(request):
         else:
             return render(request, "gender/register.html", {"message": "User already exists."})
 
+
 def search(request):
     if request.method == "GET":
         return render(request, "gender/search.html", {"isLoggedIn": request.user.is_authenticated})
+
+
+def results(request):
+    if request.method == "GET":
+        return render(request, "gender/search.html", {"isLoggedIn": request.user.is_authenticated})
+    else:
+        word = request.POST["word"]
+
+        context = {
+            "word": word,
+            "isLoggedIn": request.user.is_authenticated,
+        }
+
+        return render(request, "gender/results.html", context)
 
 
 def contribute(request):
@@ -223,6 +239,7 @@ def contribute(request):
         }
 
         return render(request, "gender/contribution.html", context)
+
 
 def suggest(request):
 
