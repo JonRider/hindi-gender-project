@@ -39,7 +39,7 @@ Hindi Gender Project Search
         <form action="{% url 'results' %}" method="post">
           {% csrf_token %}
           <div class="form-group">
-            <input name="word" type="text" class="form-control" id="word" placeholder="Noun">
+            <input name="noun" type="text" class="form-control" placeholder="Noun">
           </div>
           <p class="card-text text-center text-muted">{{ message }}</p>
           <div class="text-center">

@@ -101,14 +101,36 @@ def results(request):
     if request.method == "GET":
         return render(request, "gender/search.html", {"isLoggedIn": request.user.is_authenticated})
     else:
-        word = request.POST["word"]
+        noun = request.POST["noun"]
+        noun = noun.strip()
 
-        if isHindi(word) == False:
+        # Check for Hindi Unicode Range
+        if isHindi(noun) == False:
             return render(request, "gender/search.html", {"isLoggedIn": request.user.is_authenticated, "message": "Word must be in Hindi unicode format"})
 
+        # See if word is in DB or not
+        inDataBase = True
+        try:
+            word = Noun.objects.get(word=noun)
+            inDataBase = True
+            # Tally
+            if word.female_up > word.male_up:
+                gender = "Feminine"
+            elif word.female_up == word.male_up:
+                gender = "Contested"
+            else:
+                gender = "Masculine"
+        except Noun.DoesNotExist:
+            inDataBase = False
+            word = None
+            gender = None
+
         context = {
+            "noun": noun,
             "word": word,
             "isLoggedIn": request.user.is_authenticated,
+            "inDataBase": inDataBase,
+            "gender": gender,
         }
 
         return render(request, "gender/results.html", context)
@@ -157,12 +179,7 @@ def contribute(request):
             return render(request, "gender/contribute.html", {"message": "You must enter the URL on which you found an instance of the Hindi Word"})
 
         # Test for Hindi Unicode Range
-        # https://stackoverflow.com/questions/19704317/how-to-detect-unicode-character-range-in-python
-        # by Martijn Pieters
-        maxchar = max(noun)
-        if u'\u0900' <= maxchar <= u'\u097f':
-            pass
-        else:
+        if isHindi(noun) == False:
             return render(request, "gender/contribute.html", {"message": "You must enter a Hindi word in Unicode (Read our info page)"})
 
         # check for only one word
@@ -233,6 +250,8 @@ def contribute(request):
         # Tally
         if word.female_up > word.male_up:
             gender = "Feminine"
+        elif word.female_up == word.male_up:
+            gender = "Contested"
         else:
             gender = "Masculine"
 

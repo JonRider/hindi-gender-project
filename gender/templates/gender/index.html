@@ -34,8 +34,10 @@ Hindi Gender Project
   <div class="container">
     <h1 class="display-4"><img id="logo" src="{% static 'gender/icon/hindigender.png' %}" class="d-inline-block align-left">The Hindi Gender Project</h1>
     <p class="lead">Boldly attempting to discover the gender of all Hindi nouns!</p>
-    <button type="button" class="btn btn-lg btn-secondary d-none d-sm-block">Find Gender</button>
-    <button type="button" class="btn btn-secondary d-block d-sm-none">Find Gender</button>
+    <form action="{% url 'search' %}" method="get">
+      <button type="submit" role="button" class="btn btn-lg btn-secondary d-none d-sm-block point">Find Gender</button>
+      <button type="submit" role="button" class="btn btn-secondary d-block d-sm-none point">Find Gender</button>
+    </form>
   </div>
 </div>
 
@@ -79,6 +81,5 @@ Hindi Gender Project
  </div>
  <a>An undertaking of <a href="http://www.HindiUnlocked.com" target="_blank">HindiUnlocked.com</a></a>
  <p>Created by <b>Jonathan Rider</b></p>
- <p>Icons made by <a href="https://www.flaticon.com/authors/pixelmeetup" title="Pixelmeetup">Pixelmeetup</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
 </footer>
 {% endblock %}

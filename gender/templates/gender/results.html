@@ -34,8 +34,26 @@ Hindi Gender Project Results
   <div class="inner-card">
     <div class="card rounded-left-grad-border">
       <div class="card-body">
-        <h5 class="card-title">Search Results</h5>
-        <p class="card-text">You submitted the word: <a class="font-weight-bold">{{ word }}</a></p>
+        {% if gender|stringformat:"s" == "Feminine" %}
+        <p class="card-text display-4 font-weight-bold text-primary">{{ noun }} (F)</p>
+        {% elif gender|stringformat:"s" == "Masculine"  %}
+        <p class="card-text display-4 font-weight-bold text-secondary">{{ noun }} (M)</p>
+        {% else %}
+        <p class="card-text display-4 font-weight-bold">{{ noun }}</p>
+        {% endif %}
+        {% if inDataBase == False %}
+        <p class="card-text">Sorry that word isn't currently in the database! Find it online and <a href="{% url 'contribute' %}">contribute</a> it.</p>
+        {% else %}
+        <p class="card-text">This word has:</p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a class="text-primary font-weight-bold"><i class="fa fa-lg fa-venus"></i> Feminine Votes: {{ word.female_up }}</a></li>
+          <li class="list-group-item"><a class="text-secondary font-weight-bold"><i class="fa fa-lg fa-mars"></i> Masculine Votes: {{ word.male_up }}</a></li>
+          {% if gender|stringformat:"s" == "Contested" %}
+          <li class="list-group-item"><a class="text-danger font-weight-bold"><i class="fa fa-lg fa-times-circle"></i> Word is contested!! Find links to vote it up!</a></li>
+          {% endif %}
+        </ul>
+        <br>
+        {% endif %}
         <p class="card-text text-center text-muted"><a href="{% url 'search' %}">Search for another</a></p>
       </div>
     </div>

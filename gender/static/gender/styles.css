@@ -15,6 +15,10 @@
   font-size: 260px;
 }
 
+.point {
+  cursor: pointer;
+}
+
 .rounded-top-grad-border, .rounded-left-grad-border {
   border-top: solid 6px transparent;
   border-left: solid 1px #fff;
