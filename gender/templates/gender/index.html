@@ -43,7 +43,7 @@ Hindi Gender Project
 
   <!-- Updated Words -->
   <div class="container">
-    <div class="row text-center">
+    <div class="row text-center gap">
       {% for item in current_list %}
       <div class="col-sm-3 space">
         {% if item.male_up > item.female_up %}
@@ -54,7 +54,7 @@ Hindi Gender Project
         <h1 class=" display-4 font-weight-bold">{{ item }}</h1>
         {% endif %}
         <h5><i class="text-secondary fa fa-arrow-circle-up" title="Upvotes for Masculine" data-toggle="tooltip"> {{item.male_up}} </i> | <i class="text-primary fa fa-arrow-circle-up" title="Upvotes for Feminine" data-toggle="tooltip"> {{item.female_up}} </i></h5>
-        <a>Submitted by: jon</a>
+        <a>Submitted by: {{ item.submitted_by }}</a>
       </div>
       {% endfor %}
     </div>

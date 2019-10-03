@@ -31,6 +31,7 @@ def index(request):
     # Find recent words
     current_list = Noun.objects.all().order_by('-id')[:4]
 
+    # Return context
     context = {
      "current_list": current_list,
      "isLoggedIn": request.user.is_authenticated,
@@ -247,7 +248,7 @@ def contribute(request):
             word = Noun.objects.get(word=noun)
             inDataBase = True
         except Noun.DoesNotExist:
-            word = Noun.objects.create(word=noun)
+            word = Noun.objects.create(word=noun, submitted_by=request.user)
             inDataBase = False
 
         # Update votes

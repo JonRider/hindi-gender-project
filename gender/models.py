@@ -14,6 +14,7 @@ class Noun(models.Model):
     word = models.CharField(max_length=64, unique=True)
     female_up = models.PositiveIntegerField(default=0)
     male_up = models.PositiveIntegerField(default=0)
+    submitted_by = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.word
