@@ -7,7 +7,11 @@ Hindi Gender Project Search
 {% block body %}
 <!-- Navbar -->
 <nav class="navbar navbar-light bg-light">
-  <a href="{% url 'index' %}" class="navbar-brand mb-0 h1">HGP</a>
+  <a href="{% url 'index' %}" class="navbar-brand mb-0 h1">
+    {% load static %}
+    <img src="{% static 'gender/icon/favicon-32x32.png' %}" width="30" height="30" class="d-inline-block align-top">
+    HGP
+  </a>
   <ul class="nav">
     <li class="nav-item">
       <a class="nav-link active" href="{% url 'search' %}">Search</a>

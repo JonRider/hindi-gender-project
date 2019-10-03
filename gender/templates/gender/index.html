@@ -7,7 +7,11 @@ Hindi Gender Project
 {% block body %}
 <!-- Navbar -->
 <nav class="navbar navbar-light bg-light">
-  <a href="{% url 'index' %}" class="navbar-brand mb-0 h1">HGP</a>
+  <a href="{% url 'index' %}" class="navbar-brand mb-0 h1">
+    {% load static %}
+    <img src="{% static 'gender/icon/favicon-32x32.png' %}" width="30" height="30" class="d-inline-block align-top">
+    HGP
+  </a>
   <ul class="nav">
     <li class="nav-item">
       <a class="nav-link" href="{% url 'search' %}">Search</a>
@@ -28,7 +32,7 @@ Hindi Gender Project
 <!-- Jumbotron -->
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">The Hindi Gender Project</h1>
+    <h1 class="display-4"><img id="logo" src="{% static 'gender/icon/hindigender.png' %}" class="d-inline-block align-left">The Hindi Gender Project</h1>
     <p class="lead">Boldly attempting to discover the gender of all Hindi nouns!</p>
     <button type="button" class="btn btn-lg btn-secondary d-none d-sm-block">Find Gender</button>
     <button type="button" class="btn btn-secondary d-block d-sm-none">Find Gender</button>
@@ -75,5 +79,6 @@ Hindi Gender Project
  </div>
  <a>An undertaking of <a href="http://www.HindiUnlocked.com" target="_blank">HindiUnlocked.com</a></a>
  <p>Created by <b>Jonathan Rider</b></p>
+ <p>Icons made by <a href="https://www.flaticon.com/authors/pixelmeetup" title="Pixelmeetup">Pixelmeetup</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
 </footer>
 {% endblock %}

@@ -77,6 +77,11 @@ footer {
   cursor: pointer;
 }
 
+#logo {
+  width: 80px;
+  height: 80px;
+}
+
 @media only screen and (max-width: 768px) {
   h1 {
     font-size: 1.8rem;
@@ -94,6 +99,11 @@ footer {
   .icon {
     display: none;
   }
+
+  #logo {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 /* If the screen size is 600px or less, set the font-size of <div> to 30px */
@@ -109,5 +119,10 @@ footer {
   }
   .lead {
     font-size: 1.2rem;
+  }
+
+  #logo {
+    width: 40px;
+    height: 40px;
   }
 }
