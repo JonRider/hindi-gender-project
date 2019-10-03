@@ -43,11 +43,11 @@ Hindi Gender Project Contribution
           <ul class="fa-ul">
             {% for marker in markers_gender %}
             {% if marker.gender|stringformat:"s" == "M" %}
-            <li><i class="fa-li text-secondary fa fa-arrow-circle-up" title="Upvote for Masculine" data-toggle="tooltip"></i> {{ marker }} (Masculine) </li>
+            <li><i class="fa-li text-secondary fa fa-arrow-circle-up" title="Upvote for Masculine" data-toggle="tooltip"></i> {{ marker }} <span class="badge badge-secondary">M</span> </li>
             {% elif marker.gender|stringformat:"s" == "F" %}
-            <li><i class="fa-li text-primary fa fa-arrow-circle-up" title="Upvote for Feminine" data-toggle="tooltip"></i> {{ marker }} (Feminine) </li>
+            <li><i class="fa-li text-primary fa fa-arrow-circle-up" title="Upvote for Feminine" data-toggle="tooltip"></i> {{ marker }} <span class="badge badge-primary">F</span> </li>
             {% else %}
-            <li><form action="{% url 'suggest' %}" method="post">{% csrf_token %}<button class="circle" type="submit" name="marker" value="{{ marker.marker }}"/><i title="Click to suggest as a marker" data-toggle="tooltip" class="fa-li text-success fa fa-plus-circle"></i></button>{{ marker.marker }} (Not a marker)</li>
+            <li><form action="{% url 'suggest' %}" method="post">{% csrf_token %}<button class="circle" type="submit" name="marker" value="{{ marker.marker }}"/><i title="Click to suggest as a marker" data-toggle="tooltip" class="fa-li text-warning fa fa-plus-circle"></i></button>{{ marker.marker }} <span class="badge badge-warning">Not marker</span></li>
             {% endif %}
             {% endfor %}
           </ul>

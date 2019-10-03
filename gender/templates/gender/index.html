@@ -39,10 +39,30 @@ Hindi Gender Project
       <button type="submit" role="button" class="btn btn-secondary d-block d-sm-none point">Find Gender</button>
     </form>
   </div>
+   <hr class="my-4">
+
+  <!-- Updated Words -->
+  <div class="container">
+    <div class="row text-center">
+      {% for item in current_list %}
+      <div class="col-sm-3 space">
+        {% if item.male_up > item.female_up %}
+        <h1 class=" display-4 font-weight-bold text-secondary">{{ item }}</h1>
+        {% elif item.male_up < item.female_up %}
+        <h1 class=" display-4 font-weight-bold text-primary">{{ item }}</h1>
+        {% else %}
+        <h1 class=" display-4 font-weight-bold">{{ item }}</h1>
+        {% endif %}
+        <h5><i class="text-secondary fa fa-arrow-circle-up" title="Upvotes for Masculine" data-toggle="tooltip"> {{item.male_up}} </i> | <i class="text-primary fa fa-arrow-circle-up" title="Upvotes for Feminine" data-toggle="tooltip"> {{item.female_up}} </i></h5>
+        <a>Submitted by: jon</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
 <!-- Row 1 -->
-<div class="container gap">
+<div class="container gap ">
   <div class="row">
     <div class="col-md-8">
       <h1><i class="fa fa-venus-mars fa-lg text-primary d-md-none"></i> Why the Hindi Gender Project?</h1>

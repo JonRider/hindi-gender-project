@@ -27,8 +27,16 @@ def isHindi(word):
 # Views
 def index(request):
     """Main index page. Displays information about the project."""
-    # Home Page
-    return render(request, "gender/index.html", {"isLoggedIn": request.user.is_authenticated})
+
+    # Find recent words
+    current_list = Noun.objects.all().order_by('-id')[:4]
+
+    context = {
+     "current_list": current_list,
+     "isLoggedIn": request.user.is_authenticated,
+    }
+
+    return render(request, "gender/index.html", context)
 
 
 def login_view(request):

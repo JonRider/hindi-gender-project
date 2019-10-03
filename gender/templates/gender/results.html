@@ -31,13 +31,16 @@ Hindi Gender Project Results
 
 <!-- Search Results -->
 <div class="results container">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
   <div class="inner-card">
     <div class="card rounded-left-grad-border">
       <div class="card-body">
         {% if gender|stringformat:"s" == "Feminine" %}
-        <p class="card-text display-4 font-weight-bold text-primary">{{ noun }} (F)</p>
+        <p class="card-text display-4 font-weight-bold text-primary">{{ noun }} <span class="badge badge-primary">F</span></p>
         {% elif gender|stringformat:"s" == "Masculine"  %}
-        <p class="card-text display-4 font-weight-bold text-secondary">{{ noun }} (M)</p>
+        <p class="card-text display-4 font-weight-bold text-secondary">{{ noun }} <span class="badge badge-secondary">M</span></p>
         {% else %}
         <p class="card-text display-4 font-weight-bold">{{ noun }}</p>
         {% endif %}
