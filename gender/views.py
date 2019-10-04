@@ -90,16 +90,14 @@ def register(request):
             return render(request, "gender/register.html", {"message": "Password doesn't match!"})
 
         # Look for prexisting user
-        user = User.objects.get(username=username)
-
-        # Or register and signin
-        if user is None:
+        try:
+            user = User.objects.get(username=username)
+        except:
             user = User.objects.create_user(username, email, password)
             dj_login(request, user)
             return render(request, "gender/contribute.html", {"message": "Sucsessfully registered!"})
         else:
             return render(request, "gender/register.html", {"message": "User already exists."})
-
 
 def search(request):
     if request.method == "GET":
